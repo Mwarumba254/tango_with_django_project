@@ -41,8 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rango'#added
+    'rango',#added
+    'registration',
+    #'bootstrap_toolkit'
+
 ]
+
+#registration config
+REGISTRATION_OPEN=True
+ACCOUNT_ACTIVATION_DAYS=7
+REGISTRATION_AUTO_LOGIN=True
+LOGIN_REDIRECT_URL='/rango/'
+LOGIN_URL='/accounts/login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,3 +140,5 @@ STATICFILES_DIRS =[STATIC_DIR, ] #added
 #media files
 MEDIA_ROOT = MEDIA_DIR #added
 MEDIA_URL = '/media/' #added
+
+LOGIN_URL='/rango/login'

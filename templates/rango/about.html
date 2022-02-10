@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
 
+
 {% load staticfiles %}
 
 <html>
         <head>
-                <title>Rango</title>
+                <title> About Rango</title>
         </head>
         
         <body>
@@ -20,7 +21,7 @@
                         <a href="/rango/index/">Index</a><br />
                         <img src="{% static '/images/rango.jpg' %}" 
                         alt="Picture of Rango" />
-                       <img src="{% static '/images/cat.jpg' %}" 
+                       <img src="{{ MEDIA_URL}} cat.jpg"/> 
                        alt=" This means you should have an image of both Rango (from static) and a cat (from media) in your rendered about page. " />
                  </div>
          </body>

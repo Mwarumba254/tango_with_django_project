@@ -22,36 +22,45 @@ def populate():
     
     python_pages=[
         {'title':'Official Python Tutorial',
-         'url':'http://docs.python.org/3/tutorial/','views':5},
+         'url':'http://docs.python.org/3/tutorial/','views':20},
         {'title':'How to think like a Computer Scientist',
-         'url':'http://www.greenteapress.com/thinkpython/','views':5},
+         'url':'http://www.greenteapress.com/thinkpython/','views':70},
         {'title':'Learn Python in 10 minutes',
-         'url':'http://www.korokithakis.net/tutorials/python/','views':5}]
+         'url':'http://www.korokithakis.net/tutorials/python/','views':50}]
     
     django_pages=[
         {'title':'Official Django Tutorial',
-         'url':'https://docs.djangoproject.com/en/2.1/intro/tutorial01/','views':5},
+         'url':'https://docs.djangoproject.com/en/2.1/intro/tutorial01/','views':10},
         {'title':'Django Rocks',
-         'url':'http://www.djangorocks.com/','views':5},
+         'url':'http://www.djangorocks.com/','views':23},
         {'title':'How to Tango with Django',
-         'url':'http://www.tangowithdjango.com/','views':5}]
+         'url':'http://www.tangowithdjango.com/','views':15}]
     
     other_pages=[
         {'title':'Bottle',
-         'url':'http://bottlepy.org/docs/dev/','views':5},
+         'url':'http://bottlepy.org/docs/dev/','views':17},
         {'title':'Flask',
-         'url':'http://flask.pocoo.org','views':5}]
+         'url':'http://flask.pocoo.org','views':9}]
     
-    cats={'Python': {'pages': python_pages,'views':128,'likes':64},
-            'Django': {'pages': django_pages,'views':64,'likes':32},
-            'Other Frameworks': {'pages': other_pages,'views':32,'likes':16} }
+    cats={'Python': {'pages': python_pages,},
+            'Django': {'pages': django_pages,},
+            'Other Frameworks': {'pages': other_pages,} }
     
     #if you want to add more categories or pages add to the dictionaries above
     #the code below goes through the cats dict, then adds each category,then adds
     #all the associated pages for that category 
     
     for cat, cat_data in cats.items():
-        c = add_cat(cat,cat_data['views'],cat_data['likes'])
+        if cat=="Python":
+            likes=64
+            views=128
+        elif cat=="Django":
+            likes=32
+            views=64
+        else:
+            likes=16
+            views=32        
+        c = add_cat(cat,likes,views)
         for p in cat_data['pages']:
             add_page(c,p['title'],p['url'],p['views'])
             
@@ -71,6 +80,7 @@ def add_cat(name, views, likes):
     c = Category.objects.get_or_create(name=name,views=views,likes=likes)[0]
     c.save()
     return c
+
 #starts execution here
 if __name__ == '__main__':
     print('Starting Rango population script...')

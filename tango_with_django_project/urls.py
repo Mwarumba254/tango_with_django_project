@@ -15,17 +15,17 @@ Including another URLconf
 """
 
 from django.conf import settings
+from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from django.urls import include
-from rango import views
 
+from rango import views
+from rango.views import RangoRegistrationView
 
 urlpatterns = [
-    
-    path('', views.index, name='index'),
-    path('about/',views.about,name='about'),
-    path('rango/',include('rango.urls')),#maps urls starting with rango/ to be handled by rango
-    path('admin/', admin.site.urls),
-] + static (settings.MEDIA_URL, document_roots=settings.MEDIA_ROOT)
+                  url(r'^admin/', admin.site.urls),
+                  url(r'^$', views.index, name='index'),
+                  url(r'^rango/', include('rango.urls')),
+                  url(r'^accounts/register/$', RangoRegistrationView.as_view(), name='registration_register'),
+                  url(r'^accounts/', include('registration.backends.simple.urls'))
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

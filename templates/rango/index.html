@@ -5,7 +5,7 @@
 
 <html>
 <head>
-        <title>Rango</title>
+        <title>Homepage</title>
 </head>
 
 <body>
@@ -32,11 +32,11 @@
 
         <div>
                 <h2>Most View Pages</h2>
-                {% if pages %}
+                {% if categories %}
                     <ul>
                     {% for page in pages %}
                         <li>
-                                <a href="/rango/page/{{ category.slug }}/">{{ page.name }}</a>
+                                <a href="/rango/page/{{ page.slug }}/">{{ page.name }}</a>
                         </li>
                     {%endfor %}
                     </ul>
