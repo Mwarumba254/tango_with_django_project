@@ -41,11 +41,13 @@ def visitor_cookie_handler(request):
 
 
 def index(request):
+    #context_dict{}
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
+    context_dict={'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
     context_dict = {'categories': category_list,
                     'pages': page_list}
-    # request.session.set_test_cookie()
+     #request.session.set_test_cookie()
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
 
@@ -59,6 +61,9 @@ def index(request):
 def about(request):
     print(request.method)
     print(request.user)
+
+    context_dict ={'boldmessage': 'This tutorial has been put together by Ismail Mwarumba Mashine.'}
+
     # if request.session.test_cookie_worked():
     #     print("test cookie worked")
     #     request.session.delete_test_cookie()
